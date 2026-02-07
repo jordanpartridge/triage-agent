@@ -56,6 +56,8 @@ return [
     'providers' => [
         App\Providers\AppServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
+        Prism\Prism\PrismServiceProvider::class,
+        Laravel\Ai\AiServiceProvider::class,
     ],
 
 ];
