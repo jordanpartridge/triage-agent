@@ -79,6 +79,7 @@ PROMPT;
             ->using(Provider::Ollama, config('services.ollama.model'))
             ->withSystemPrompt($systemPrompt)
             ->withPrompt($userMessage)
+            ->withClientOptions(['timeout' => 120])
             ->asText();
 
         return $response->text;
