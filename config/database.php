@@ -9,6 +9,8 @@ return [
             'port' => env('REDIS_PORT', 6380),
             'password' => env('REDIS_PASSWORD'),
             'database' => env('REDIS_DB', 0),
+            'read_write_timeout' => -1,
+            'prefix' => env('REDIS_PREFIX', 'bifrost-database-'),
         ],
     ],
 ];
