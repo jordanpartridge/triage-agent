@@ -126,7 +126,11 @@ class TriageListenCommand extends Command
 
         $this->info("Spawned agent: {$agentName}");
 
-        Process::start(['agentctl', 'run', $agentName, $task]);
+        Process::start([
+            'systemd-run', '--user', '--scope',
+            '--unit', "agent-{$agentName}",
+            'agentctl', 'run', $agentName, $task,
+        ]);
 
         $this->info("Agent {$agentName} running on {$repo}#{$issue['number']}");
     }
