@@ -36,7 +36,15 @@ class TriageListenCommand extends Command
                 return;
             }
 
-            $handler($event, $github);
+            try {
+                $handler($event, $github);
+            } catch (\Throwable $e) {
+                $this->error("Handler failed: {$e->getMessage()}");
+                Log::error('Triage handler exception', [
+                    'error' => $e->getMessage(),
+                    'event' => $event['eventType'] ?? 'unknown',
+                ]);
+            }
         });
     }
 
